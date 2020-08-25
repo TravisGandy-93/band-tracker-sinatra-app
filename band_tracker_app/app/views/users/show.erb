@@ -10,7 +10,7 @@
 
 <% @user.tracks.each do |track| %>
 <li>
-    <a href="/tracks/<%=track.name%>"><%=track.band.name%>
+    <a href="/tracks/<%=track.name.downcase.split.join("-")%>"><%=track.band.name%>
         - "<%= track.name %>"</a>
 </li>
 <% end %>
@@ -32,4 +32,5 @@
     <h2>
         <a href="/tracks">All tracks</a>
     </li>
+        <a href="/logout">Log Out</a>
 </h2>

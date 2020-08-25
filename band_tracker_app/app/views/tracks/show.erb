@@ -1,0 +1,23 @@
+<h2>Track:
+    <%=@track.name%>
+    <br>
+    Band:
+    <a href="/bands/<%= @track.band.name.downcase.split.join("-")%>"><%= @track.band.name%></a>
+</h2>
+
+<% if @track.user == current_user%>
+<h3>
+    <a href="/tracks/<%=@track.slug%>/edit">Edit</a>
+    <br>
+    <a href="/tracks/<%=@track.slug%>/delete">Delete</a>
+</h3>
+<% end %>
+
+<h3>Back to
+    <a href="/">my home</a>
+</h3>
+
+<h3>Back to
+    <a href="/tracks">all tracks</a>
+    <a href="/logout">Log Out</a>
+</h3>

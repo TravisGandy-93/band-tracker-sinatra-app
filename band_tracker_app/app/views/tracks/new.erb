@@ -1,0 +1,27 @@
+<h2> Fill out this form to add a new track. </h2>
+<form action="/tracks/new" method="POST">
+    <h3>
+        <label>Track name</label>
+    </h3>
+
+    <input type="text" name="track[name]">
+    <br>
+    <h3>
+        <label>Choose a band</label>
+    </h3>
+
+    <select name="track[selected_band]">
+        <option value="">-</option>
+        <% @bands.each do |band| %>
+          <option value="<%=band.name%>"><%=band.name%></option>
+        <% end %>
+    </select>
+    <br>
+    <h3>
+        <label>Or add a new one</label>
+    </h3>
+
+    <input type="text" name="track[band]">
+
+    <input type="submit" value="Add track">
+</form>

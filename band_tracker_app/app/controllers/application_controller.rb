@@ -2,6 +2,7 @@ require './config/environment'
 
 class ApplicationController < Sinatra::Base
 
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -28,19 +29,18 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    @user = User.new(params[:user])
+    @user = User.create(username: params[:username], password: params[:password])
     if @user.save
       session[:user_id] = @user.id
       redirect '/'
     else
-      flash[:message] = @user.errors.full_messages.join('. ')
+      
       redirect '/signup'
     end
   end
 
   get '/login' do
     if logged_in?
-      flash[:message] = "You are already logged in."
       redirect '/'
     else
       erb :login
@@ -53,12 +53,15 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/'
     else
-      flash[:message] = "Invalid username or/and password. Please try again."
+     
       redirect '/login'
     end
   end
-
   
+  get '/logout' do
+    session.clear
+    redirect '/'
+  end
   
   
   helpers do

@@ -1,0 +1,13 @@
+ <h2>Add a new Track to
+    <%=@band.name%>
+    current track list.
+</h2>
+
+<form action="/bands/<%=@band.slug%>/edit" method="post">
+    <h3>
+        <label>track name</label>
+    </h3>
+    <input type="text" name="track_name">
+
+    <input type="submit" value="Add track">
+</form>

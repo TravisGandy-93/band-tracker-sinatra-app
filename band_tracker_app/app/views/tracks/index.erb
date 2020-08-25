@@ -4,7 +4,7 @@
     <% @tracks.each do |a| %>
     <h2>
         <li>
-            <a href="/tracks/<%= a.name%>"><%= a.name%></a>
+            <a href="/tracks/<%= a.name.downcase.split.join("-")%>"><%= a.name%></a>
         </li>
     </h2>
     <% end %>
