@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   get "/" do
      if logged_in?
       @user = current_user
-      erb :'/users/index'
+      erb :'/users/show'
     else
     erb :hello
     end 
