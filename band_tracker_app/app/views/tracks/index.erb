@@ -1,0 +1,15 @@
+<h1>Band Track: tracks</h1>
+
+<ul>
+    <% @tracks.each do |a| %>
+    <h2>
+        <li>
+            <a href="/tracks/<%= a.name%>"><%= a.name%></a>
+        </li>
+    </h2>
+    <% end %>
+</ul>
+<br>  
+<h3>Back to
+    <a href="/">my home</a>
+</h3>

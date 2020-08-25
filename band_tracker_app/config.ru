@@ -6,5 +6,6 @@ end
 
 use Rack::MethodOverride
 
-
+use BandsController
+use TracksController
 run ApplicationController

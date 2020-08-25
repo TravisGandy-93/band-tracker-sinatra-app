@@ -2,34 +2,34 @@
     <%= @user.username %>
 </h1>
 
-<% if !@user.artists.empty? && !@user.songs.empty? %>
-<h2>This is your music library.
+<% if !@user.bands.empty? && !@user.tracks.empty? %>
+<h2>This is your Band Track tracklist.
     <br>
     Click on a track to update it with changes.
 </h2>
 
-<% @user.songs.each do |song| %>
+<% @user.tracks.each do |track| %>
 <li>
-    <a href="/tracks/<%=song.slug%>"><%=track.band.name%>
+    <a href="/tracks/<%=track.name%>"><%=track.band.name%>
         - "<%= track.name %>"</a>
 </li>
 <% end %>
 
-<% elsif @user.artists.empty? && @user.songs.empty? %>
-<h2>Your music library is currently empty :(</h2>
+<% elsif @user.bands.empty? && @user.tracks.empty? %>
+<h2>Your Band Track tracklist is currently empty :(</h2>
 <% end %>
 <br>
 <h2>Add
-    <a href="/songs/new">new songs</a>, if you cannot find them in our library below:
+    <a href="/tracks/new">new tracks</a>, if you cannot find them in your Band Track tracklist. Search:
 </h2>
 
 <li>
     <h2>
-        <a href="/artists">All artists</a>
+        <a href="/bands">All bands</a>
     </li>
 </h2>
 <li>
     <h2>
-        <a href="/songs">All songs</a>
+        <a href="/tracks">All tracks</a>
     </li>
 </h2>
