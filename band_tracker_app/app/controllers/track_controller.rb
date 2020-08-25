@@ -22,7 +22,6 @@ class TracksController <  ApplicationController
      
       redirect "/tracks/#{@track.slug}"
     else
-      flash[:message] = "Both fields must be filled in. Please complete the form."
       redirect '/tracks/new'
     end
   end
@@ -33,10 +32,54 @@ class TracksController <  ApplicationController
     if @track
       erb :'/tracks/show'
     else
-      flash[:message] = "This track does not exist"
       redirect '/tracks'
     end
   end
   
+  get '/tracks/:slug/edit' do
+    authenticate_user
+    @track = Track.find_by_slug(params[:slug]) 
+    if @track && @track.user == current_user
+      erb :'/tracks/edit'
+    elsif @track && !@track.user == current_user
+     
+      redirect to "/tracks/#{@track.slug}"
+    else
+     
+      redirect to "/tracks"
+    end
+  end
 
-end 
+  patch '/tracks/:slug/edit' do
+    authenticate_user
+    @track = Track.find_by_slug(params[:slug])
+    if !params[:track][:band].empty? && !params[:track][:name].empty?
+      if band ||= Band.find_by(name: params[:track][:band])
+        @track.update(name: params[:track][:name], band: band)
+      else band = Band.create(name: params[:track][:band], user_id: current_user.id)
+        @track.update(name: params[:track][:name], band: band)
+      end
+      
+      redirect to "/tracks/#{@track.slug}"
+    else
+      
+      redirect to "/tracks/#{@track.slug}/edit"
+    end
+  end
+
+  get '/tracks/:slug/delete' do
+    authenticate_user
+    @track = Track.find_by_slug(params[:slug])
+    @band = @track.band
+    if @track.user == current_user
+      @track.destroy
+
+     
+      redirect "/bands/#{@band.slug}"
+    else
+      
+      redirect to "/tracks/#{@track.slug}"
+    end
+  end
+end
+  

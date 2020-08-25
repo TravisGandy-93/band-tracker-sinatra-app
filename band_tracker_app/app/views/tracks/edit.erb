@@ -2,7 +2,7 @@
     <%=@track.name%>
 </h2>
 
-<form action="/tracks/<%= @track.name %>/edit" method="POST">
+<form action="/tracks/<%= @track.slug %>/edit" method="POST">
     <input type="hidden" name="_method" value="PATCH">
 
     <h3>

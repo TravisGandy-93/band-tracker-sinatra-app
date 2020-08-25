@@ -23,10 +23,10 @@ get '/bands/:slug' do
     if !params[:track_name].empty?
       Track.create(name: params[:track_name], band: @band, user: current_user)
 
-      flash[:message] = "The song is successfully added."
+      
       redirect "/bands/#{@band.slug}"
     else
-      flash[:message] = "Enter the song name."
+     
       redirect "/bands/#{@band.slug}/edit"
     end
   end
