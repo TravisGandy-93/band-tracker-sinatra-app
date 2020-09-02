@@ -56,7 +56,7 @@ class TracksController <  ApplicationController
     if !params[:track][:band].empty? && !params[:track][:name].empty?
       if band ||= Band.find_by(name: params[:track][:band])
         @track.update(name: params[:track][:name], band: band)
-      else band = Band.create(name: params[:track][:band], user_id: current_user.id)
+      elsif band = Band.create(name: params[:track][:band])
         @track.update(name: params[:track][:name], band: band)
       end
       

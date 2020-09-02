@@ -76,7 +76,7 @@ class ApplicationController < Sinatra::Base
 
   private
 
-    def authenticate_user #-> Possible message arg*
+    def authenticate_user
       if !logged_in?
         flash[:message] = "You must be logged in to access this page"
         redirect '/'
